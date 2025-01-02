@@ -1,14 +1,18 @@
 package biblioteca;
 
+import divisao.Setor;
 import java.util.List;
 
-import divisao.Setor;
-
 public class Bibliotecario extends Funcionario implements LivroReservado {
+
     private List<Emprestimo> emprestimos;
 
     public Bibliotecario(String nome, String login, String senha, String cpf, Setor lotacao) {
         super(nome, login, senha, lotacao);
+    }
+
+    public Bibliotecario(String nome, String login, String senha, String cpf) {
+        super(nome, login, senha, cpf);
     }
 
     public void ocorreu(Reserva reserva) {

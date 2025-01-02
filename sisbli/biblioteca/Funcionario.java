@@ -4,9 +4,15 @@ import acesso.Usuario;
 import divisao.Setor;
 
 public class Funcionario extends Usuario {
+
     private String cpf;
     private int pis;
     private Setor lotacao;
+
+    public Funcionario(String nome, String login, String senha, String cpf) {
+        super(nome, login, senha);
+        this.cpf = cpf;
+    }
 
     public Funcionario(String nome, String login, String senha, Setor lotacao) {
         super(nome, login, senha);

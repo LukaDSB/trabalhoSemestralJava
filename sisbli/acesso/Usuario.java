@@ -1,13 +1,24 @@
 package acesso;
 
+import biblioteca.Aluno;
+import biblioteca.Bibliotecario;
+import biblioteca.Professor;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Usuario {
+
     private String nome;
     private String login;
     private String senha;
     private List<Funcionalidade> funcionalidades;
     private static List<Usuario> usuarios;
+
+    public Usuario(String nome, String login, String senha) {
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+    }
 
     public Usuario(String nome, String login, String senha, List<Funcionalidade> funcionalidades) {
         this.nome = nome;
@@ -16,10 +27,23 @@ public class Usuario {
         this.funcionalidades = funcionalidades;
     }
 
-    public Usuario(String nome, String login, String senha) {
-        this.nome = nome;
-        this.login = login;
-        this.senha = senha;
+    static {
+        usuarios = new ArrayList<Usuario>();
+        usuarios.add(new Aluno("Roberto Santos", "rsantos", "123456", 00154));
+        usuarios.add(new Bibliotecario("Joana Silva", "jsilva", "654321", "09945789632"));
+        usuarios.add(new Professor("José Maria Santos", "jmsantos", "132465", "08632176245"));
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> List<T> listar(Class<T> instanciaClasse) {
+        List<T> usuariosClasse = new ArrayList<>();
+
+        for (Usuario usuario : usuarios) {
+            if (instanciaClasse.isInstance(usuario)) {
+                usuariosClasse.add((T) usuario);
+            }
+        }
+        return (usuariosClasse);
     }
 
     public String getNome() {
