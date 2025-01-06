@@ -8,7 +8,7 @@ import acesso.Usuario;
 public class Aluno extends Usuario implements IReservouLivro {
     private int matricula;
     private List<Reserva> reservas;
-    private List<LivroReservado> consumidores;
+    private List<ILivroReservado> consumidores;
     private List<Funcionalidade> funcionalidades;
 
     public Aluno(String nome, String login, String senha, int matricula) {
@@ -16,7 +16,7 @@ public class Aluno extends Usuario implements IReservouLivro {
         this.matricula = matricula;
     }
 
-    public List<LivroReservado> getConsumidores() {
+    public List<ILivroReservado> getConsumidores() {
         return consumidores;
     }
 
@@ -24,7 +24,7 @@ public class Aluno extends Usuario implements IReservouLivro {
 
     }
 
-    public void adicionar(LivroReservado livroReservado) {
+    public void adicionar(ILivroReservado livroReservado) {
         consumidores.add(livroReservado);
     }
 
@@ -32,7 +32,7 @@ public class Aluno extends Usuario implements IReservouLivro {
         System.out.println("sla");
     }
 
-    public void remover(LivroReservado livroReservado) {
+    public void remover(ILivroReservado livroReservado) {
         if (consumidores.contains(livroReservado)) {
             consumidores.remove(livroReservado);
             System.out.println("Livro removido");

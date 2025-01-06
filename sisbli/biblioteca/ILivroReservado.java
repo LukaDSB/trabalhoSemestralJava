@@ -1,6 +1,6 @@
 package biblioteca;
 
-public interface LivroReservado {
+public interface ILivroReservado {
     public void ocorreu(Reserva reserva);
 
     public String informaraReserva();

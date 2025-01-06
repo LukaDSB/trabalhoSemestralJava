@@ -29,7 +29,7 @@ public class Usuario {
 
     static {
         usuarios = new ArrayList<Usuario>();
-        usuarios.add(new Aluno("Roberto Santos", "rsantos", "123456", 00154));
+        usuarios.add(new Aluno("Aluno1", "aluno1", "123456", 00154));
         usuarios.add(new Bibliotecario("Joana Silva", "jsilva", "654321", "09945789632"));
         usuarios.add(new Professor("José Maria Santos", "jmsantos", "132465", "08632176245"));
     }
@@ -52,5 +52,14 @@ public class Usuario {
 
     public List<Funcionalidade> getFuncionalidades() {
         return funcionalidades;
+    }
+
+    public static boolean autenticarAluno(String login, String senha) {
+        for (Usuario usuario : usuarios) {
+            if (usuario instanceof Aluno && usuario.login.equals(login) && usuario.senha.equals(senha)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

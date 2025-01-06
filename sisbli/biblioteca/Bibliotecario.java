@@ -3,7 +3,7 @@ package biblioteca;
 import divisao.Setor;
 import java.util.List;
 
-public class Bibliotecario extends Funcionario implements LivroReservado {
+public class Bibliotecario extends Funcionario implements ILivroReservado {
 
     private List<Emprestimo> emprestimos;
 
