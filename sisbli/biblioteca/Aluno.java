@@ -1,19 +1,24 @@
 package biblioteca;
 
-import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
 import acesso.Funcionalidade;
 import acesso.Usuario;
 
 public class Aluno extends Usuario implements IReservouLivro {
     private int matricula;
     private List<Reserva> reservas;
-    private List<LivroReservado> consumidores; 
+    private List<LivroReservado> consumidores;
     private List<Funcionalidade> funcionalidades;
 
+    // Construtor
     public Aluno(String nome, String login, String senha, int matricula) {
         super(nome, login, senha);
         this.matricula = matricula;
+        this.reservas = new ArrayList<>(); 
+        this.consumidores = new ArrayList<>(); 
+        this.funcionalidades = new ArrayList<>(); 
     }
 
     public List<LivroReservado> getConsumidores() {
@@ -25,6 +30,10 @@ public class Aluno extends Usuario implements IReservouLivro {
     }
 
     public void cadastrarReserva(List<String> titulosLivros, String data) {
+        if (reservas == null) {
+            reservas = new ArrayList<>(); 
+        }
+
         int limiteReservas = 5;
 
         if (reservas.size() + titulosLivros.size() > limiteReservas) {
@@ -38,6 +47,10 @@ public class Aluno extends Usuario implements IReservouLivro {
         Reserva novaReserva = new Reserva(data, titulosLivros);
         reservas.add(novaReserva);
 
+        if (consumidores == null) {
+            consumidores = new ArrayList<>(); 
+        }
+
         for (LivroReservado consumidor : consumidores) {
             consumidor.notificar(novaReserva);
         }
@@ -50,16 +63,19 @@ public class Aluno extends Usuario implements IReservouLivro {
 
     @Override
     public void adicionar(LivroReservado livroReservado) {
+        if (consumidores == null) {
+            consumidores = new ArrayList<>();
+        }
         consumidores.add(livroReservado);
     }
 
     @Override
     public void remover(LivroReservado livroReservado) {
-        if (consumidores.contains(livroReservado)) {
+        if (consumidores != null && consumidores.contains(livroReservado)) {
             consumidores.remove(livroReservado);
             System.out.println("Consumidor removido.");
         } else {
-            System.out.println("Consumidor não encontrado.");
+            System.out.println("Consumidor não encontrado ou lista não inicializada.");
         }
     }
 

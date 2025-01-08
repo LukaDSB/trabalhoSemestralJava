@@ -30,6 +30,8 @@ public class Usuario {
     static {
         usuarios = new ArrayList<Usuario>();
         usuarios.add(new Aluno("Aluno1", "aluno1", "123456", 00154));
+        usuarios.add(new Aluno("Aluno2", "aluno2", "123456", 00624));
+        usuarios.add(new Aluno("Aluno3", "aluno3", "123456", 00254));
         usuarios.add(new Bibliotecario("Joana Silva", "jsilva", "654321", "09945789632"));
         usuarios.add(new Professor("José Maria Santos", "jmsantos", "132465", "08632176245"));
     }
