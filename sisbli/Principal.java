@@ -14,7 +14,6 @@ import acesso.Usuario;
 public class Principal {
 
     private static final List<Aluno> consumidores = new ArrayList<>();
-
     private static final List<Livro> livrosDisponiveis = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -147,7 +146,7 @@ public class Principal {
             }
         });
 
-          JButton btnCadastrarReserva = new JButton("Cadastrar Reserva");
+        JButton btnCadastrarReserva = new JButton("Cadastrar Reserva");
         btnCadastrarReserva.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -228,6 +227,8 @@ public class Principal {
                     JOptionPane.WARNING_MESSAGE);
 
             if (confirm == JOptionPane.YES_OPTION) {
+                notificarConsumidores(); 
+
                 JOptionPane.showMessageDialog(frame, "Sistema encerrado. Até logo!", "Adeus", JOptionPane.INFORMATION_MESSAGE);
                 System.exit(0);
             }
@@ -241,5 +242,16 @@ public class Principal {
         frame.add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
     }
-}
 
+    private static void notificarConsumidores() {
+        String dataAtual = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        consumidores.forEach(consumidor -> {
+            JOptionPane.showMessageDialog(null,
+                    "Informações do Consumidor:\n" +
+                            "Nome: " + consumidor.getNome() + "\n" +
+                            "Data: " + dataAtual + "\n",
+                    "Notificação de Saída",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+    }
+}
